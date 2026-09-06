@@ -232,6 +232,10 @@ Describe 'Module' -Tag 'Consistency' {
 		#before the call, so Windows PowerShell ParameterBinding/Module Logging cannot capture the
 		#plaintext value. See https://github.com/pspete/psPAS/issues/602
 
+		#No SCA function currently builds a secret-bearing request body - Connect-SCATenant's -Credential is
+		#handed to IdentityCommand's New-IDSession/New-IDPlatformToken, so the plaintext never reaches an
+		#SCA request. This guard is therefore inert today, and is kept to cover any SCA function that does
+		#start sending one of these fields.
 		$SecretFieldNames = 'password', 'secret_access_key', 'secret_data', 'BindPassword', 'clientSecret'
 		$SecretFieldPattern = "(?i)'($($SecretFieldNames -join '|'))'"
 		$SecretDecodePattern = 'ConvertTo-InsecureString'
