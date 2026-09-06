@@ -49,6 +49,7 @@ function Get-SCAApiValueMap {
             'Active'     = [ordered]@{ Value = 1; Description = 'The policy is active' }
             'Expired'    = [ordered]@{ Value = 3; Description = 'The policy has expired' }
             'Error'      = [ordered]@{ Value = 4; Description = 'There is an error in the policy' }
+            'Warning'    = [ordered]@{ Value = 5; Description = 'The policy is active, with a warning' }
             'Validating' = [ordered]@{ Value = 6; Description = 'The policy is currently being validated' }
         }
 

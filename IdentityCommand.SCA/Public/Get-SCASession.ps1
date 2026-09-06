@@ -20,6 +20,7 @@ function Get-SCASession {
             Mandatory = $false,
             ValueFromPipelinebyPropertyName = $true
         )]
+        [ValidateRange(1, 50)]
         [int]$limit
     )
 

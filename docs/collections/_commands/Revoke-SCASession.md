@@ -84,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -sessionIds
-The IDs of the sessions to revoke.
+The IDs of the sessions to revoke. Up to 100 sessions can be revoked in a single request.
 
 ```yaml
 Type: String[]
@@ -126,5 +126,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Object
 ## NOTES
+
+A revocation is not necessarily complete when the command returns - each result reports a revocationStatus of either SUCCESSFULLY_REVOKED or REVOCATION_IN_PROGRESS.
 
 ## RELATED LINKS

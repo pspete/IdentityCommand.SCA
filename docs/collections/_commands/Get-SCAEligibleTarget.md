@@ -86,4 +86,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Object
 ## NOTES
 
+Each returned target reports the workspace (workspaceId, workspaceName), the role you are eligible to use (role.id, role.name), and the organization the workspace belongs to (organizationId).
+
+workspaceType is ACCOUNT for AWS, and one of DIRECTORY, MANAGEMENT_GROUP, SUBSCRIPTION, RESOURCE_GROUP or RESOURCE for Azure.
+
+accessApproval.status reports whether a request is needed before connecting - REQUIRED, PENDING or APPROVED.
+
+accessWindow reports when access is allowed - RECURRING where a policy defines a window, UNLIMITED where access is allowed at any time, or FIXED for the window granted by an approved request.
+
 ## RELATED LINKS

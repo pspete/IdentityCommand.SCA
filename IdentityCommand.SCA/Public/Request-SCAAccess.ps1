@@ -15,6 +15,7 @@ function Request-SCAAccess {
             HelpMessage = 'Accepts object output from New-SCAAccessTargetDefinition.'
         )]
         [PSTypeName('IdCmd.SCA.Definition.Access.Target')]
+        [ValidateCount(1, 5)]
         [psobject[]]$targets,
 
         [parameter(

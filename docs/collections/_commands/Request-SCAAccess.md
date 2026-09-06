@@ -100,7 +100,9 @@ Accept wildcard characters: False
 ```
 
 ### -targets
-Accepts object output from New-SCAAccessTargetDefinition.
+Accepts object output from New-SCAAccessTargetDefinition. Up to 5 targets can be requested in a single request, and all must belong to the same organization.
+
+The API limits this further depending on the target: a single target only, for a standalone AWS account or an AWS account in an organization; up to 5 for Google Cloud folders or projects, or Azure subscriptions, resource groups or resources; up to 3 for Microsoft Entra ID. The higher limits apply only where connection with multiple roles is enabled.
 
 ```yaml
 Type: PSObject[]

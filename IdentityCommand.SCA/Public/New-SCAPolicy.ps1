@@ -14,6 +14,7 @@ function New-SCAPolicy {
             ValueFromPipelinebyPropertyName = $true
         )]
         [ValidateLength(1, 200)]
+        [ValidateScript({ Test-SCAPolicyText -Value $PSItem -ParameterName name -Pattern $(Get-SCAPolicyTextPattern -Name Name) })]
         [String]$name,
 
         [parameter(
@@ -21,6 +22,7 @@ function New-SCAPolicy {
             ValueFromPipelinebyPropertyName = $true
         )]
         [ValidateLength(0, 200)]
+        [ValidateScript({ Test-SCAPolicyText -Value $PSItem -ParameterName description -Pattern $(Get-SCAPolicyTextPattern -Name Description) })]
         [String]$description,
 
         [parameter(

@@ -71,7 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -limit
-The maximum number of active sessions to return in a single response. All pages of results are returned regardless of the value specified.
+The maximum number of active sessions to return in a single response, from 1 to 50. All pages of results are returned regardless of the value specified.
 
 ```yaml
 Type: Int32

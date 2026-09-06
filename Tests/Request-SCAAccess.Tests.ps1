@@ -19,6 +19,12 @@ BeforeAll {
 
 Describe 'Request-SCAAccess' {
 
+    It 'rejects more targets than the API accepts' {
+        $Targets = 1..6 | ForEach-Object { New-SCAAccessTargetDefinition -workspaceId "Workspace$PSItem" -roleId "Role$PSItem" }
+        { Request-SCAAccess -csp AWS -targets $Targets -Confirm:$false } | Should -Throw
+    }
+
+
     BeforeEach {
 
         Mock -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -MockWith {

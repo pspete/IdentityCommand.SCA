@@ -90,4 +90,20 @@ Describe 'New-SCAPolicy' {
         $Script:response.jobId | Should -Be 'SomeJob'
     }
 
+    It 'accepts a name made of characters the API allows' {
+        $Roles = New-SCAPolicyRoleDefinition -entityId 'arn:aws:iam::123451234567:role/examplerole' -entitySourceId '123451234567'
+        $Identities = New-SCAPolicyIdentityDefinition -entityName 'John.D@company.com' -entitySourceId 'A1B2C3D4' -entityClass user
+        { New-SCAPolicy -csp AWS -name 'Finance end of year' -description 'Roll {up} $100 - see note [1]' -roles $Roles -identities $Identities } | Should -Not -Throw
+    }
+
+    It 'rejects a <Field> containing characters the API does not accept' -TestCases @(
+        @{ Field = 'name'; Arguments = @{ name = 'Finance (EOY)' } }
+        @{ Field = 'name'; Arguments = @{ name = "Finance`tEOY" } }
+        @{ Field = 'description'; Arguments = @{ name = 'Finance'; description = 'End of year (EOY)' } }
+    ) {
+        $Roles = New-SCAPolicyRoleDefinition -entityId 'arn:aws:iam::123451234567:role/examplerole' -entitySourceId '123451234567'
+        $Identities = New-SCAPolicyIdentityDefinition -entityName 'John.D@company.com' -entitySourceId 'A1B2C3D4' -entityClass user
+        { New-SCAPolicy -csp AWS @Arguments -roles $Roles -identities $Identities } | Should -Throw
+    }
+
 }

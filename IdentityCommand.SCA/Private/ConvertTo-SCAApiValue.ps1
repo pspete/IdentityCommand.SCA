@@ -12,7 +12,7 @@ function ConvertTo-SCAApiValue {
     The enumeration to look the value up in.
 
     CloudProvider - AWS = 0, GCP = 1, AZURE = 2, AWS_IDC = 3, AZURE_ENTRA_ID = 4
-    PolicyStatus  - Active = 1, Expired = 3, Error = 4, Validating = 6
+    PolicyStatus  - Active = 1, Expired = 3, Error = 4, Warning = 5, Validating = 6
 
     .PARAMETER Value
     The friendly value to translate. Matched case-insensitively.

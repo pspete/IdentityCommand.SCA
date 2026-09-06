@@ -59,7 +59,15 @@ Accept wildcard characters: False
 ```
 
 ### -account_id
-The ID of the account, project or subscription to scan.
+The ID of the workspace to scan.
+
+AWS: the AWS account ID.
+
+Azure resource: the subscription ID.
+
+Azure - Microsoft Entra ID: the Azure tenant ID.
+
+Google Cloud: the project ID.
 
 ```yaml
 Type: String
@@ -74,7 +82,13 @@ Accept wildcard characters: False
 ```
 
 ### -org_id
-The ID of the organization the account belongs to. Not required for a standalone AWS account.
+The ID of the organization the workspace belongs to. Not required for a standalone AWS account.
+
+AWS: the management account ID.
+
+Azure: the Azure tenant ID.
+
+Google Cloud: the Google Cloud organization ID.
 
 ```yaml
 Type: String

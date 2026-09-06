@@ -100,7 +100,9 @@ Accept wildcard characters: False
 ```
 
 ### -new_account
-Specify $true when the workspace has not previously been discovered.
+Specify $true when onboarding a workspace which is new to an already onboarded organization - a new AWS account in an AWS organization, a new Google Cloud project in a Google Cloud organization, or a new management group or subscription in a Microsoft Entra ID directory.
+
+When omitted, or $false, the workspace is treated as one which has already been onboarded. It is not rediscovered; only a scan for roles is run.
 
 ```yaml
 Type: Boolean

@@ -91,7 +91,10 @@ Accept wildcard characters: False
 ```
 
 ### -description
-The description of the policy.
+The description of the policy. Up to 200 characters.
+
+The API accepts the same characters as -name, and additionally $ ] ^ { }.
+Notably, ( ) & ' " # % and * are not accepted.
 
 ```yaml
 Type: String
@@ -136,7 +139,10 @@ Accept wildcard characters: False
 ```
 
 ### -name
-The name of the policy.
+The name of the policy. 1 to 200 characters.
+
+The API accepts letters, digits, spaces and the characters ! + , - . / : ; < = > ? @ [ \ _ only.
+Notably, ( ) & ' " # % and * are not accepted.
 
 ```yaml
 Type: String
@@ -212,5 +218,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Object
 ## NOTES
+
+Vendor documentation states the API which this command uses will be deprecated in the near future.
 
 ## RELATED LINKS

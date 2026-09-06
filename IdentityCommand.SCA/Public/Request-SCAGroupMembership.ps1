@@ -12,6 +12,7 @@ function Request-SCAGroupMembership {
             Mandatory = $true,
             ValueFromPipelinebyPropertyName = $true
         )]
+        [ValidateCount(1, 5)]
         [String[]]$groupId,
 
         [parameter(

@@ -8,6 +8,7 @@ function Revoke-SCASession {
             ParameterSetName = 'BySessionId'
         )]
         [Alias('sessionId')]
+        [ValidateCount(1, 100)]
         [String[]]$sessionIds,
 
         [parameter(

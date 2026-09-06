@@ -89,13 +89,13 @@ Accept wildcard characters: False
 ### -appType
 The type of web app to create.
 
-Supported values: AWS IAM, AWS IDC, Azure, GCP.
+Supported values: AWS IAM, AWS IdC, Azure, GCP.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
-Accepted values: AWS IAM, AWS IDC, Azure, GCP
+Accepted values: AWS IAM, AWS IdC, Azure, GCP
 
 Required: True
 Position: 0
@@ -138,7 +138,7 @@ Accept wildcard characters: False
 The workspace the web app connects to.
 
 AWS IAM: the AWS organization (management account) ID or AWS account ID.
-AWS IDC: the AWS IAM Identity Center management account ID.
+AWS IdC: the AWS IAM Identity Center management account ID.
 Azure: the Microsoft Entra ID directory (tenant) ID.
 GCP: the Google Cloud organization ID.
 

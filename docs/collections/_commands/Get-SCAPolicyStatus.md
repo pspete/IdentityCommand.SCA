@@ -24,6 +24,7 @@ The API reports the status as a bare integer; the returned object pairs that val
 - 1 - Active - The policy is active
 - 3 - Expired - The policy has expired
 - 4 - Error - There is an error in the policy
+- 5 - Warning - The policy is active, with a warning
 - 6 - Validating - The policy is currently being validated
 
 A status value this module has no definition for is returned as-is, with no name or description.
@@ -79,5 +80,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### IdCmd.SCA.Policy.Status
 ## NOTES
+
+Vendor documentation states the API which this command uses will be deprecated in the near future.
 
 ## RELATED LINKS

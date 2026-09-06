@@ -90,4 +90,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Object
 ## NOTES
 
+Vendor documentation states the API which this command uses will be deprecated in the near future.
+
 ## RELATED LINKS

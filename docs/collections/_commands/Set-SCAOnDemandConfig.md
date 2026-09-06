@@ -40,7 +40,9 @@ Configures access requests to be approved through an external channel.
 ### -ApprovalChannel
 The channel which handles access request approvals.
 
-Supported values: In-platform, External.
+In-platform: approvals are handled by the vendor's own in-platform approval channel.
+
+External: approvals are handled by an external channel, such as ServiceNow or Slack.
 
 ```yaml
 Type: String

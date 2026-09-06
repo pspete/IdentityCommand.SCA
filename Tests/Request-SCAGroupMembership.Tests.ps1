@@ -19,6 +19,11 @@ BeforeAll {
 
 Describe 'Request-SCAGroupMembership' {
 
+    It 'rejects more groups than the API accepts' {
+        { Request-SCAGroupMembership -directoryId 'SomeDirectory' -groupId (1..6 | ForEach-Object { "Group$PSItem" }) -Confirm:$false } | Should -Throw
+    }
+
+
     BeforeEach {
 
         Mock -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -MockWith {

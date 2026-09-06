@@ -19,6 +19,11 @@ BeforeAll {
 
 Describe 'Get-SCASession' {
 
+    It 'rejects a limit above the maximum the API accepts' {
+        { Get-SCASession -limit 51 } | Should -Throw
+    }
+
+
     BeforeEach {
 
         Mock -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -MockWith {

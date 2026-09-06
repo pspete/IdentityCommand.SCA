@@ -6,7 +6,7 @@ function New-SCAWebApp {
             Mandatory = $true,
             ValueFromPipelinebyPropertyName = $true
         )]
-        [ValidateSet('AWS IAM', 'AWS IDC', 'Azure', 'GCP')]
+        [ValidateSet('AWS IAM', 'AWS IdC', 'Azure', 'GCP')]
         [String]$appType,
 
         [parameter(

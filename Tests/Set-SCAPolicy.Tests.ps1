@@ -92,4 +92,16 @@ Describe 'Set-SCAPolicy' {
         $Script:response.policyId | Should -Be 'SomePolicy'
     }
 
+    It 'accepts a name made of characters the API allows' {
+        { Set-SCAPolicy -policy_id SomePolicy -name 'Finance end of year' -description 'Roll {up} $100 - see note [1]' } | Should -Not -Throw
+    }
+
+    It 'rejects a <Field> containing characters the API does not accept' -TestCases @(
+        @{ Field = 'name'; Arguments = @{ name = 'Finance (EOY)' } }
+        @{ Field = 'name'; Arguments = @{ name = "Finance`tEOY" } }
+        @{ Field = 'description'; Arguments = @{ description = 'End of year (EOY)' } }
+    ) {
+        { Set-SCAPolicy -policy_id SomePolicy @Arguments } | Should -Throw
+    }
+
 }

@@ -103,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -groupId
-The IDs of the groups to request just-in-time membership of.
+The IDs of the groups to request just-in-time membership of. Up to 5 groups can be requested in a single request.
 
 ```yaml
 Type: String[]

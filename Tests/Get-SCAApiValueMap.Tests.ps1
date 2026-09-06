@@ -35,6 +35,7 @@ Describe 'Get-SCAApiValueMap' {
         @{ Member = 'Active'; Value = 1 }
         @{ Member = 'Expired'; Value = 3 }
         @{ Member = 'Error'; Value = 4 }
+        @{ Member = 'Warning'; Value = 5 }
         @{ Member = 'Validating'; Value = 6 }
     ) {
         InModuleScope -ModuleName $Script:SCAModuleName -Parameters @{ Member = $Member; Value = $Value } {

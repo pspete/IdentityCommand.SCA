@@ -19,6 +19,11 @@ BeforeAll {
 
 Describe 'Revoke-SCASession' {
 
+    It 'rejects more session ids than the API accepts' {
+        { Revoke-SCASession -sessionIds (1..101 | ForEach-Object { "Session$PSItem" }) -Confirm:$false } | Should -Throw
+    }
+
+
     BeforeEach {
 
         Mock -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -MockWith {
