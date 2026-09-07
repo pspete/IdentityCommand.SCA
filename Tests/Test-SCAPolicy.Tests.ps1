@@ -25,6 +25,10 @@ Describe 'Test-SCAPolicy' {
             [pscustomobject]@{ 'jobId' = 'SomeJob' }
         }
 
+        Mock -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -MockWith {
+            [pscustomobject]@{ 'job_id' = 'SomeJob'; 'operation' = 'SomeOperation'; 'status' = 'Success' }
+        } -ParameterFilter { $URI -match 'integrations/status' }
+
         InModuleScope -ModuleName $Script:SCAModuleName {
             $ISPSSSession = [ordered]@{
                 tenant_url = 'https://somedomain.sca.cyberark.cloud'
@@ -55,8 +59,15 @@ Describe 'Test-SCAPolicy' {
         } -Times 1 -Exactly -Scope It
     }
 
-    It 'returns the job id' {
-        $Script:response.jobId | Should -Be 'SomeJob'
+    It 'reports the status of the job which was started' {
+        Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            $URI -eq 'https://somedomain.sca.cyberark.cloud/api/integrations/status?jobId=SomeJob'
+        } -Times 1 -Exactly -Scope It
+    }
+
+    It 'returns the job status in place of the job id' {
+        $Script:response.status | Should -Be 'Success'
+        $Script:response.job_id | Should -Be 'SomeJob'
     }
 
 }

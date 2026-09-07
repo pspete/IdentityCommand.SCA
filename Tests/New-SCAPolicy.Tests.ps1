@@ -25,6 +25,10 @@ Describe 'New-SCAPolicy' {
             [pscustomobject]@{ 'jobId' = 'SomeJob' }
         }
 
+        Mock -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -MockWith {
+            [pscustomobject]@{ 'job_id' = 'SomeJob'; 'operation' = 'SomeOperation'; 'status' = 'Success' }
+        } -ParameterFilter { $URI -match 'integrations/status' }
+
         InModuleScope -ModuleName $Script:SCAModuleName {
             $ISPSSSession = [ordered]@{
                 tenant_url = 'https://somedomain.sca.cyberark.cloud'
@@ -55,12 +59,14 @@ Describe 'New-SCAPolicy' {
 
     It 'requests version 2.0 of the policies API' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             $Headers['X-API-Version'] -eq '2.0'
         } -Times 1 -Exactly -Scope It
     }
 
     It 'sends the expected policy properties' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             $Content = $Body | ConvertFrom-Json
             ($Content.csp -eq 'AWS') -and ($Content.name -eq 'SomePolicy') -and ($Content.description -eq 'SomeDescription')
         } -Times 1 -Exactly -Scope It
@@ -68,6 +74,7 @@ Describe 'New-SCAPolicy' {
 
     It 'sends roles and identities as arrays' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             $Content = $Body | ConvertFrom-Json
             (@($Content.roles).Count -eq 1) -and (@($Content.identities).Count -eq 1) -and ($Content.roles[0].entitySourceId -eq '123451234567')
         } -Times 1 -Exactly -Scope It
@@ -82,12 +89,20 @@ Describe 'New-SCAPolicy' {
 
     It 'omits properties which were not supplied' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             ($Body | ConvertFrom-Json).PSObject.Properties.Name -notcontains 'endDate'
         } -Times 1 -Exactly -Scope It
     }
 
-    It 'returns the result' {
-        $Script:response.jobId | Should -Be 'SomeJob'
+    It 'reports the status of the job which was started' {
+        Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            $URI -eq 'https://somedomain.sca.cyberark.cloud/api/integrations/status?jobId=SomeJob'
+        } -Times 1 -Exactly -Scope It
+    }
+
+    It 'returns the job status in place of the job id' {
+        $Script:response.status | Should -Be 'Success'
+        $Script:response.job_id | Should -Be 'SomeJob'
     }
 
     It 'accepts a name made of characters the API allows' {

@@ -26,7 +26,8 @@ function Test-SCAPolicy {
 
             if ($null -ne $result) {
 
-                $result
+                #Report the status of the job started by the request
+                $result | Resolve-SCAJobStatus
 
             }
 

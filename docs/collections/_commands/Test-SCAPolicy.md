@@ -19,7 +19,7 @@ Test-SCAPolicy [-policyId] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ## DESCRIPTION
 Triggers a validation process for a user access policy, confirming the cloud roles and identities it references can still be resolved.
 
-The operation is asynchronous - the returned job ID can be passed to Get-SCAJobStatus.
+The operation is asynchronous. The status of the job which was started is returned; pass its job_id to Get-SCAJobStatus to check on it again later.
 
 ## EXAMPLES
 

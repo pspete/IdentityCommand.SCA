@@ -123,7 +123,7 @@ Revoke-SCASession -userId my
 
 ### Cloud Scans & Jobs
 
-Scans, discoveries, policy creation and web app creation are asynchronous, and return a job id which `Get-SCAJobStatus` reports on:
+Scans, discoveries, policy changes and web app creation are asynchronous. `Get-SCAJobStatus` reports on the job:
 
 ```powershell
 # Scan every onboarded AWS account

@@ -697,7 +697,8 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Returns the status of a job created by an asynchronous operation, such as Start-SCAScan, Start-SCADiscovery, New-SCAPolicy or Test-SCAPolicy.</maml:para>
+      <maml:para>Returns the status of a job created by an asynchronous operation.</maml:para>
+      <maml:para>Start-SCAScan and Start-SCADiscovery report the id of the job they start; pass that to this command to follow its progress. The job_id reported by New-SCAPolicy, Set-SCAPolicy, Test-SCAPolicy and New-SCAWebApp can be passed back the same way.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1533,7 +1534,7 @@ Request-SCAAccess -csp AWS -organizationId '098765432109' -targets $Targets</dev
     <maml:description>
       <maml:para>Creates a user access policy, granting the specified identities just-in-time access to the specified cloud roles.</maml:para>
       <maml:para>The roles, identities and access rules are built with New-SCAPolicyRoleDefinition, New-SCAPolicyIdentityDefinition and New-SCAPolicyAccessRuleDefinition.</maml:para>
-      <maml:para>The operation is asynchronous - the returned job ID can be passed to Get-SCAJobStatus.</maml:para>
+      <maml:para>The operation is asynchronous. The status of the job which was started is returned; pass its job_id to Get-SCAJobStatus to check on it again later.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2602,7 +2603,7 @@ Start-SCAScan -cloudProvider AWS -accountType Specific -entityIds $Entities</dev
     </command:details>
     <maml:description>
       <maml:para>Creates the Idira web app users connect to a cloud environment through. Web apps can be created for a standalone AWS account, multiple AWS accounts in an AWS organization, AWS IAM Identity Center, Azure Microsoft Entra ID and Google Cloud.</maml:para>
-      <maml:para>The operation is asynchronous - the returned job ID can be passed to Get-SCAJobStatus.</maml:para>
+      <maml:para>The operation is asynchronous. The status of the job which was started is returned; pass its job_id to Get-SCAJobStatus to check on it again later.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3704,6 +3705,7 @@ Request-SCAAccess -csp AWS -organizationId '098765432109' -targets $Targets</dev
     <maml:description>
       <maml:para>Updates an existing user access policy.</maml:para>
       <maml:para>The current policy is queried first, and any property which is not supplied keeps the value it already has. The cloud provider a policy applies to cannot be changed.</maml:para>
+      <maml:para>The operation is asynchronous. The status of the job which was started is returned; pass its job_id to Get-SCAJobStatus to check on it again later.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4456,7 +4458,7 @@ Start-SCAScan -cloudProvider AWS -accountType Specific -entityIds $Entities</dev
     </command:details>
     <maml:description>
       <maml:para>Triggers a validation process for a user access policy, confirming the cloud roles and identities it references can still be resolved.</maml:para>
-      <maml:para>The operation is asynchronous - the returned job ID can be passed to Get-SCAJobStatus.</maml:para>
+      <maml:para>The operation is asynchronous. The status of the job which was started is returned; pass its job_id to Get-SCAJobStatus to check on it again later.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
