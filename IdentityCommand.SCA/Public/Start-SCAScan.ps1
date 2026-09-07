@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Start-SCAScan {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -33,7 +33,7 @@ function Start-SCAScan {
 
     process {
 
-        $URI = Add-SCAQueryString -URI "$($ISPSSSession.tenant_url)/api/cloud/rescan" -SupportsDebug
+        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/cloud/rescan" -SupportsDebug
 
         $boundParameters = $PSBoundParameters | Get-Parameter
 
@@ -41,10 +41,10 @@ function Start-SCAScan {
         $boundParameters['cloudProvider'] = ConvertTo-SCAApiValue -Name CloudProvider -Value $cloudProvider
 
         #Project supplied parameters onto the expected request properties
-        $Properties = Select-SCARequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
+        $Properties = Select-RequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
 
         #Create Request Body
-        $body = ConvertTo-SCAJsonBody -Body $Properties
+        $body = ConvertTo-JsonBody -Body $Properties
 
         if ($PSCmdlet.ShouldProcess("$cloudProvider ($accountType)", 'Start SCA Cloud Scan')) {
 

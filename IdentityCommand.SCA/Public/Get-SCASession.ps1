@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Get-SCASession {
     [CmdletBinding(DefaultParameterSetName = 'All')]
     param(
@@ -34,14 +34,14 @@ function Get-SCASession {
             "$($ISPSSSession.tenant_url)/api/access/sessions"
         }
 
-        $URI = Add-SCAQueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter -ParametersToRemove userId)
+        $URI = Add-QueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter -ParametersToRemove userId)
 
         #Send Request
         $result = Invoke-IDRestMethod -Uri $URI -Method GET
 
         if ($null -ne $result) {
 
-            Get-SCAPagedResult -InitialResult $result -URI $URI
+            Get-PagedResult -InitialResult $result -URI $URI -Style Cursor -ResultProperty response -CursorRequestKey nextToken -CursorResponseKey nextToken
 
         }
 

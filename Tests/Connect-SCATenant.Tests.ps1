@@ -55,9 +55,9 @@ Describe $($PSCommandPath -Replace '.Tests.ps1') {
                 }
             }
 
-            Mock Resolve-SCAServiceUrl -MockWith {
+            Mock Resolve-ServiceUrl -MockWith {
                 [pscustomobject]@{
-                    SCAUrl      = 'https://SomeSubdomain.sca.cyberark.cloud'
+                    ServiceUrl  = 'https://SomeSubdomain.sca.cyberark.cloud'
                     IdentityUrl = 'https://aao4818.id.cyberark.cloud'
                 }
             }
@@ -133,7 +133,7 @@ Describe $($PSCommandPath -Replace '.Tests.ps1') {
 
                 Connect-SCATenant -tenant_url 'https://somedomain.sca.cyberark.cloud' -Credential $Credential
 
-                Should -Invoke -CommandName Resolve-SCAServiceUrl -ParameterFilter {
+                Should -Invoke -CommandName Resolve-ServiceUrl -ParameterFilter {
                     $Url -eq 'https://somedomain.sca.cyberark.cloud'
                 } -Times 1 -Exactly -Scope It
 
@@ -174,7 +174,7 @@ Describe $($PSCommandPath -Replace '.Tests.ps1') {
 
                 Connect-SCATenant -tenant_subdomain 'SomeSubdomain' -Credential $Credential
 
-                Should -Invoke -CommandName Resolve-SCAServiceUrl -ParameterFilter {
+                Should -Invoke -CommandName Resolve-ServiceUrl -ParameterFilter {
                     $Subdomain -eq 'SomeSubdomain'
                 } -Times 1 -Exactly -Scope It
 
@@ -204,7 +204,7 @@ Describe $($PSCommandPath -Replace '.Tests.ps1') {
 
                 Connect-SCATenant -tenant_subdomain 'SomeSubdomain'
 
-                Should -Invoke -CommandName Resolve-SCAServiceUrl -ParameterFilter {
+                Should -Invoke -CommandName Resolve-ServiceUrl -ParameterFilter {
                     $Subdomain -eq 'SomeSubdomain'
                 } -Times 1 -Exactly -Scope It
 

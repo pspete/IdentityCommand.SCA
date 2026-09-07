@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function New-SCAWebApp {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -43,11 +43,11 @@ function New-SCAWebApp {
         $boundParameters = $PSBoundParameters | Get-Parameter
 
         #The workspace details are sent as a nested appMetadata object
-        $Properties = Select-SCARequestProperty -Property @('appType', 'appName') -BoundParameter $boundParameters
-        $Properties['appMetadata'] = Select-SCARequestProperty -Property @('workspaceId', 'establishAutoTrust', 'useIdentityAsIdp') -BoundParameter $boundParameters
+        $Properties = Select-RequestProperty -Property @('appType', 'appName') -BoundParameter $boundParameters
+        $Properties['appMetadata'] = Select-RequestProperty -Property @('workspaceId', 'establishAutoTrust', 'useIdentityAsIdp') -BoundParameter $boundParameters
 
         #Create Request Body
-        $body = ConvertTo-SCAJsonBody -Body $Properties
+        $body = ConvertTo-JsonBody -Body $Properties
 
         if ($PSCmdlet.ShouldProcess($appName, 'Create SCA Web App')) {
 

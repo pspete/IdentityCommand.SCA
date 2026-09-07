@@ -61,8 +61,8 @@ function Connect-SCATenant {
 
         if ($UsingSubdomain) {
 
-            $ServiceUrl = Resolve-SCAServiceUrl -Subdomain $tenant_subdomain
-            $tenant_url = $ServiceUrl.SCAUrl
+            $ServiceUrl = Resolve-ServiceUrl -Service sca -Subdomain $tenant_subdomain
+            $tenant_url = $ServiceUrl.ServiceUrl
 
         } else {
 
@@ -70,7 +70,7 @@ function Connect-SCATenant {
             $tenant_url = $tenant_url -replace '/$', ''
 
             if ($AuthRequested) {
-                $ServiceUrl = Resolve-SCAServiceUrl -Url $tenant_url
+                $ServiceUrl = Resolve-ServiceUrl -Service sca -Url $tenant_url
             }
 
         }
