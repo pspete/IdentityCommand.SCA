@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function New-SCAAccessTargetDefinition {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Justification = 'Function does not change state')]
     [OutputType('IdCmd.SCA.Definition.Access.Target')]
@@ -49,7 +49,7 @@ function New-SCAAccessTargetDefinition {
 
         $boundParameters = $PSBoundParameters | Get-Parameter -ParametersToRemove Definition
 
-        $Target = Select-SCARequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
+        $Target = Select-RequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
 
         if ($PSBoundParameters.ContainsKey('Definition')) { $Definition }
 

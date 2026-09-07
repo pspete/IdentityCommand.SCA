@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function New-SCAPolicy {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -70,7 +70,7 @@ function New-SCAPolicy {
 
     process {
 
-        $URI = Add-SCAQueryString -URI "$($ISPSSSession.tenant_url)/api/policies/create-policy" -SupportsDebug
+        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/create-policy" -SupportsDebug
 
         #Get request parameters
         $boundParameters = $PSBoundParameters | Get-Parameter
@@ -78,15 +78,15 @@ function New-SCAPolicy {
         #The API expects ISO format dates
         foreach ($dateParam in 'startDate', 'endDate') {
             if ($PSBoundParameters.ContainsKey($dateParam)) {
-                $boundParameters[$dateParam] = ConvertTo-SCADateString -Date $PSBoundParameters[$dateParam]
+                $boundParameters[$dateParam] = ConvertTo-DateString -Date $PSBoundParameters[$dateParam]
             }
         }
 
         #Project supplied parameters onto the expected request properties
-        $Properties = Select-SCARequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
+        $Properties = Select-RequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
 
         #Create Request Body
-        $body = ConvertTo-SCAJsonBody -Body $Properties
+        $body = ConvertTo-JsonBody -Body $Properties
 
         if ($PSCmdlet.ShouldProcess($name, 'Create New SCA Policy')) {
 

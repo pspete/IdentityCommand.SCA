@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -82,6 +82,7 @@ Describe 'New-SCAWebApp' {
     It 'sends the appType casing the API expects' {
         New-SCAWebApp -appType 'AWS IdC' -appName 'IAM Identity Center' -workspaceId '1234567890'
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             ($Body | ConvertFrom-Json).appType -ceq 'AWS IdC'
         } -Times 1 -Exactly -Scope It
     }

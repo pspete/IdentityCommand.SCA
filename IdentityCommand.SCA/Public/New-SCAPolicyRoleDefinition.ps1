@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function New-SCAPolicyRoleDefinition {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Justification = 'Function does not change state')]
     [OutputType('IdCmd.SCA.Definition.Policy.Role')]
@@ -47,7 +47,7 @@ function New-SCAPolicyRoleDefinition {
 
         $boundParameters = $PSBoundParameters | Get-Parameter -ParametersToRemove Definition
 
-        $Role = Select-SCARequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
+        $Role = Select-RequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
 
         if ($PSBoundParameters.ContainsKey('Definition')) { $Definition }
 

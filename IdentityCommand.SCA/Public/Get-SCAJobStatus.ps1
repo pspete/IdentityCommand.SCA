@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Get-SCAJobStatus {
     [CmdletBinding()]
     param(
@@ -16,7 +16,7 @@ function Get-SCAJobStatus {
 
         $URI = "$($ISPSSSession.tenant_url)/api/integrations/status"
 
-        $URI = Add-SCAQueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter) -SupportsDebug
+        $URI = Add-QueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter) -SupportsDebug
 
         #Send Request
         $result = Invoke-IDRestMethod -Uri $URI -Method GET

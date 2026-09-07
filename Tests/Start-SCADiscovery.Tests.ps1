@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -51,6 +51,7 @@ Describe 'Start-SCADiscovery' {
 
     It 'sends the workspace details in a nested account_info object' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             $Content = $Body | ConvertFrom-Json
             ($Content.csp -eq 'AWS') -and ($Content.organization_id -eq '123457654321') -and ($Content.account_info.id -eq '987654123456') -and ($Content.account_info.new_account -eq $true)
         } -Times 1 -Exactly -Scope It

@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Get-SCAPolicy {
     [CmdletBinding(DefaultParameterSetName = 'List')]
     param(
@@ -42,7 +42,7 @@ function Get-SCAPolicy {
 
         if ($PSCmdlet.ParameterSetName -eq 'ById') {
 
-            $URI = Add-SCAQueryString -URI "$URI/$policy_id" -SupportsDebug
+            $URI = Add-QueryString -URI "$URI/$policy_id" -SupportsDebug
 
         } else {
 
@@ -57,7 +57,7 @@ function Get-SCAPolicy {
                 $boundParameters['cloud_provider'] = ConvertTo-SCAApiValue -Name CloudProvider -Value $cloud_provider
             }
 
-            $URI = Add-SCAQueryString -URI $URI -Parameter $boundParameters -SupportsDebug
+            $URI = Add-QueryString -URI $URI -Parameter $boundParameters -SupportsDebug
 
         }
 

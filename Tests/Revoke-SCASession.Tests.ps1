@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -61,6 +61,7 @@ Describe 'Revoke-SCASession' {
 
         It 'sends the session ids as an array' {
             Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+                if ($Method -ne 'POST') { return $false }
                 @(($Body | ConvertFrom-Json).sessionIds).Count -eq 1
             } -Times 1 -Exactly -Scope It
         }
