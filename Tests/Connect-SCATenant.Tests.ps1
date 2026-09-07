@@ -1,4 +1,4 @@
-#The module must be loaded before discovery, as this file uses InModuleScope at container level
+﻿#The module must be loaded before discovery, as this file uses InModuleScope at container level
 if ( -not (Get-Module -Name 'IdentityCommand.SCA' -All)) {
 
     Import-Module -Name (Join-Path (Split-Path (Split-Path $PSCommandPath -Parent) -Parent) 'IdentityCommand.SCA\IdentityCommand.SCA.psd1') -ArgumentList $true -Force -ErrorAction Stop
@@ -81,6 +81,16 @@ Describe $($PSCommandPath -Replace '.Tests.ps1') {
 
                 Should -Invoke -CommandName New-IDSession -Times 0 -Exactly -Scope It
                 Should -Invoke -CommandName New-IDPlatformToken -Times 0 -Exactly -Scope It
+
+            }
+
+            It 'authenticates when authentication parameters are supplied and a session already exists' {
+
+                $Credential = [pscredential]::new('SomeUser', ('SomeSecret' | ConvertTo-SecureString -AsPlainText -Force))
+
+                Connect-SCATenant -tenant_url 'SomeURL' -Credential $Credential
+
+                Should -Invoke -CommandName New-IDSession -Times 1 -Exactly -Scope It
 
             }
 
