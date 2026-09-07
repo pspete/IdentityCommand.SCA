@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Set-SCAOnDemandConfig {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -17,7 +17,7 @@ function Set-SCAOnDemandConfig {
         $URI = "$($ISPSSSession.tenant_url)/api/on-demand/config"
 
         #Create Request Body
-        $body = ConvertTo-SCAJsonBody -Body ($PSBoundParameters | Get-Parameter)
+        $body = ConvertTo-JsonBody -Body ($PSBoundParameters | Get-Parameter)
 
         if ($PSCmdlet.ShouldProcess($ApprovalChannel, 'Set SCA On-Demand Approval Channel')) {
 

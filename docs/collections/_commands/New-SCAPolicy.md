@@ -23,7 +23,7 @@ Creates a user access policy, granting the specified identities just-in-time acc
 
 The roles, identities and access rules are built with New-SCAPolicyRoleDefinition, New-SCAPolicyIdentityDefinition and New-SCAPolicyAccessRuleDefinition.
 
-The operation is asynchronous - the returned job ID can be passed to Get-SCAJobStatus.
+The operation is asynchronous. The status of the job which was started is returned; pass its job_id to Get-SCAJobStatus to check on it again later.
 
 ## EXAMPLES
 

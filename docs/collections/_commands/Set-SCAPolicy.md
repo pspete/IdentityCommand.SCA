@@ -23,6 +23,8 @@ Updates an existing user access policy.
 
 The current policy is queried first, and any property which is not supplied keeps the value it already has. The cloud provider a policy applies to cannot be changed.
 
+The operation is asynchronous. The status of the job which was started is returned; pass its job_id to Get-SCAJobStatus to check on it again later.
+
 ## EXAMPLES
 
 ### Example 1

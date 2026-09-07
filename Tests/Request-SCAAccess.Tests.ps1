@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -66,6 +66,7 @@ Describe 'Request-SCAAccess' {
 
     It 'sends targets as an array' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             @(($Body | ConvertFrom-Json).targets).Count -eq 1
         } -Times 1 -Exactly -Scope It
     }

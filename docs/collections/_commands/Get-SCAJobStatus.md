@@ -17,7 +17,9 @@ Get-SCAJobStatus [-jobId] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Returns the status of a job created by an asynchronous operation, such as Start-SCAScan, Start-SCADiscovery, New-SCAPolicy or Test-SCAPolicy.
+Returns the status of a job created by an asynchronous operation.
+
+Start-SCAScan and Start-SCADiscovery report the id of the job they start; pass that to this command to follow its progress. The job_id reported by New-SCAPolicy, Set-SCAPolicy, Test-SCAPolicy and New-SCAWebApp can be passed back the same way.
 
 ## EXAMPLES
 

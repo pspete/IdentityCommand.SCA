@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Set-SCAPolicy {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -78,7 +78,7 @@ function Set-SCAPolicy {
 
     process {
 
-        $URI = Add-SCAQueryString -URI "$($ISPSSSession.tenant_url)/api/policies/$policy_id" -SupportsDebug
+        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/$policy_id" -SupportsDebug
 
         #Get existing policy settings
         $PolicySettings = Get-SCAPolicy -policy_id $policy_id
@@ -89,15 +89,15 @@ function Set-SCAPolicy {
         #The API expects ISO format dates
         foreach ($dateParam in 'startDate', 'endDate') {
             if ($PSBoundParameters.ContainsKey($dateParam)) {
-                $boundParameters[$dateParam] = ConvertTo-SCADateString -Date $PSBoundParameters[$dateParam]
+                $boundParameters[$dateParam] = ConvertTo-DateString -Date $PSBoundParameters[$dateParam]
             }
         }
 
         #Project supplied parameters onto the request template, falling back to the existing policy
-        $Properties = Merge-SCAParameter -Template $OrderedProperties -BoundParameter $boundParameters -Fallback $PolicySettings
+        $Properties = Merge-Parameter -Template $OrderedProperties -BoundParameter $boundParameters -Fallback $PolicySettings
 
         #Create Request Body
-        $body = ConvertTo-SCAJsonBody -Body $Properties
+        $body = ConvertTo-JsonBody -Body $Properties
 
         if ($PSCmdlet.ShouldProcess($policy_id, 'Update SCA Policy')) {
 
@@ -106,7 +106,8 @@ function Set-SCAPolicy {
 
             if ($null -ne $result) {
 
-                $result
+                #Report the status of the job started by the request
+                $result | Resolve-SCAJobStatus
 
             }
 

@@ -1,4 +1,4 @@
----
+﻿---
 external help file: IdentityCommand.SCA-help.xml
 Module Name: IdentityCommand.SCA
 online version:
@@ -90,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -Credential
-The credential to authenticate to CyberArk Identity with, when no active IdentityCommand session is found.
+The credential to authenticate to CyberArk Identity with. Authentication is performed even if an active IdentityCommand session is found, replacing it.
 
 ```yaml
 Type: PSCredential
@@ -120,7 +120,7 @@ Accept wildcard characters: False
 ```
 
 ### -SAMLResponse
-The SAML assertion to authenticate to CyberArk Identity with, when no active IdentityCommand session is found.
+The SAML assertion to authenticate to CyberArk Identity with. Authentication is performed even if an active IdentityCommand session is found, replacing it.
 
 ```yaml
 Type: String

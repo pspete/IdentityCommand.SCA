@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -49,6 +49,7 @@ Describe 'Set-SCAOnDemandConfig' {
 
     It 'sends the approval channel in the request body' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'PATCH') { return $false }
             ($Body | ConvertFrom-Json).ApprovalChannel -eq 'External'
         } -Times 1 -Exactly -Scope It
     }
@@ -56,6 +57,7 @@ Describe 'Set-SCAOnDemandConfig' {
     It 'does not send a request when the operation is not confirmed' {
         Set-SCAOnDemandConfig -ApprovalChannel 'In-platform' -WhatIf
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'PATCH') { return $false }
             $Body -match 'In-platform'
         } -Times 0 -Exactly -Scope It
     }

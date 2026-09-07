@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Remove-SCAPolicy {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -14,7 +14,7 @@ function Remove-SCAPolicy {
 
     process {
 
-        $URI = Add-SCAQueryString -URI "$($ISPSSSession.tenant_url)/api/policies/$policy_id" -SupportsDebug
+        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/$policy_id" -SupportsDebug
 
         if ($PSCmdlet.ShouldProcess($policy_id, 'Remove SCA Policy')) {
 

@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function New-SCAPolicyAccessRuleDefinition {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Justification = 'Function does not change state')]
     [OutputType('IdCmd.SCA.Definition.Policy.AccessRule')]
@@ -49,7 +49,7 @@ function New-SCAPolicyAccessRuleDefinition {
 
         $boundParameters = $PSBoundParameters | Get-Parameter
 
-        $AccessRule = Select-SCARequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
+        $AccessRule = Select-RequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
 
         #The API expects an array of day names, which a single supplied day must not collapse to a string.
         $AccessRule['days'] = @($days)

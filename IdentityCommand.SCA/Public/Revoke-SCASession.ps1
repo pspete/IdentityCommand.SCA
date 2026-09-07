@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Revoke-SCASession {
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = 'BySessionId')]
     param(
@@ -35,7 +35,7 @@ function Revoke-SCASession {
             $Target = $sessionIds -join ', '
 
             #Create Request Body
-            $body = ConvertTo-SCAJsonBody -Body @{ 'sessionIds' = @($sessionIds) }
+            $body = ConvertTo-JsonBody -Body @{ 'sessionIds' = @($sessionIds) }
 
         }
 

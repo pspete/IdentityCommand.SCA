@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Start-SCADiscovery {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -32,16 +32,16 @@ function Start-SCADiscovery {
 
     process {
 
-        $URI = Add-SCAQueryString -URI "$($ISPSSSession.tenant_url)/api/policies/discovery" -SupportsDebug
+        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/discovery" -SupportsDebug
 
         $boundParameters = $PSBoundParameters | Get-Parameter
 
         #The workspace to discover is sent as a nested account_info object
-        $Properties = Select-SCARequestProperty -Property @('csp', 'organization_id') -BoundParameter $boundParameters
-        $Properties['account_info'] = Select-SCARequestProperty -Property @('id', 'new_account') -BoundParameter $boundParameters
+        $Properties = Select-RequestProperty -Property @('csp', 'organization_id') -BoundParameter $boundParameters
+        $Properties['account_info'] = Select-RequestProperty -Property @('id', 'new_account') -BoundParameter $boundParameters
 
         #Create Request Body
-        $body = ConvertTo-SCAJsonBody -Body $Properties
+        $body = ConvertTo-JsonBody -Body $Properties
 
         if ($PSCmdlet.ShouldProcess($id, 'Start SCA Workspace Discovery')) {
 

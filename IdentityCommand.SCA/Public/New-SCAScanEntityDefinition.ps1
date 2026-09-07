@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function New-SCAScanEntityDefinition {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Justification = 'Function does not change state')]
     [OutputType('IdCmd.SCA.Definition.Scan.EntityId')]
@@ -35,7 +35,7 @@ function New-SCAScanEntityDefinition {
 
         $boundParameters = $PSBoundParameters | Get-Parameter -ParametersToRemove Definition
 
-        $Entity = Select-SCARequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
+        $Entity = Select-RequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
 
         if ($PSBoundParameters.ContainsKey('Definition')) { $Definition }
 

@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function New-SCAPolicyIdentityDefinition {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Justification = 'Function does not change state')]
     [OutputType('IdCmd.SCA.Definition.Policy.Identity')]
@@ -42,7 +42,7 @@ function New-SCAPolicyIdentityDefinition {
 
         $boundParameters = $PSBoundParameters | Get-Parameter -ParametersToRemove Definition
 
-        $Identity = Select-SCARequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
+        $Identity = Select-RequestProperty -Property $ExpectedProperties -BoundParameter $boundParameters
 
         if ($PSBoundParameters.ContainsKey('Definition')) { $Definition }
 

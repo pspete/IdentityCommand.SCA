@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Request-SCAGroupMembership {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -36,7 +36,7 @@ function Request-SCAGroupMembership {
         }
 
         #Create Request Body
-        $body = ConvertTo-SCAJsonBody -Body $Properties
+        $body = ConvertTo-JsonBody -Body $Properties
 
         if ($PSCmdlet.ShouldProcess($($groupId -join ', '), 'Request Just-In-Time Group Membership')) {
 

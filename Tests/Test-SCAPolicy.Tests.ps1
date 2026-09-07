@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -24,6 +24,10 @@ Describe 'Test-SCAPolicy' {
         Mock -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -MockWith {
             [pscustomobject]@{ 'jobId' = 'SomeJob' }
         }
+
+        Mock -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -MockWith {
+            [pscustomobject]@{ 'job_id' = 'SomeJob'; 'operation' = 'SomeOperation'; 'status' = 'Success' }
+        } -ParameterFilter { $URI -match 'integrations/status' }
 
         InModuleScope -ModuleName $Script:SCAModuleName {
             $ISPSSSession = [ordered]@{
@@ -51,12 +55,20 @@ Describe 'Test-SCAPolicy' {
 
     It 'sends the policy id in the request body' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             ($Body | ConvertFrom-Json).policyId -eq 'SomePolicy'
         } -Times 1 -Exactly -Scope It
     }
 
-    It 'returns the job id' {
-        $Script:response.jobId | Should -Be 'SomeJob'
+    It 'reports the status of the job which was started' {
+        Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            $URI -eq 'https://somedomain.sca.cyberark.cloud/api/integrations/status?jobId=SomeJob'
+        } -Times 1 -Exactly -Scope It
+    }
+
+    It 'returns the job status in place of the job id' {
+        $Script:response.status | Should -Be 'Success'
+        $Script:response.job_id | Should -Be 'SomeJob'
     }
 
 }

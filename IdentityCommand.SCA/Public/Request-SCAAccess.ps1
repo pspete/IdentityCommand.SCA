@@ -1,4 +1,4 @@
-# .ExternalHelp IdentityCommand.SCA-help.xml
+﻿# .ExternalHelp IdentityCommand.SCA-help.xml
 function Request-SCAAccess {
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -36,10 +36,10 @@ function Request-SCAAccess {
         $URI = "$($ISPSSSession.tenant_url)/api/access/elevate"
 
         #Project supplied parameters onto the expected request properties
-        $Properties = Select-SCARequestProperty -Property $ExpectedProperties -BoundParameter ($PSBoundParameters | Get-Parameter)
+        $Properties = Select-RequestProperty -Property $ExpectedProperties -BoundParameter ($PSBoundParameters | Get-Parameter)
 
         #Create Request Body
-        $body = ConvertTo-SCAJsonBody -Body $Properties
+        $body = ConvertTo-JsonBody -Body $Properties
 
         if ($PSCmdlet.ShouldProcess("$csp targets", 'Elevate Access')) {
 

@@ -20,7 +20,7 @@ New-SCAWebApp [-appType] <String> [-appName] <String> [-workspaceId] <String> [[
 ## DESCRIPTION
 Creates the Idira web app users connect to a cloud environment through. Web apps can be created for a standalone AWS account, multiple AWS accounts in an AWS organization, AWS IAM Identity Center, Azure Microsoft Entra ID and Google Cloud.
 
-The operation is asynchronous - the returned job ID can be passed to Get-SCAJobStatus.
+The operation is asynchronous. The status of the job which was started is returned; pass its job_id to Get-SCAJobStatus to check on it again later.
 
 ## EXAMPLES
 
