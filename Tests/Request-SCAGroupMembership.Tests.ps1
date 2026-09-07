@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -64,6 +64,7 @@ Describe 'Request-SCAGroupMembership' {
     It 'sends a target for every group id supplied' {
         $null = Request-SCAGroupMembership -directoryId SomeDirectory -groupId SomeGroup, SomeOtherGroup
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             @(($Body | ConvertFrom-Json).targets).Count -eq 2
         } -Times 1 -Exactly -Scope It
     }

@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -51,6 +51,7 @@ Describe 'Start-SCAScan' {
 
     It 'sends the numeric value of the cloud provider' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             $Content = $Body | ConvertFrom-Json
             ($Content.cloudProvider -eq 0) -and ($Content.accountType -eq 'All')
         } -Times 1 -Exactly -Scope It
@@ -58,6 +59,7 @@ Describe 'Start-SCAScan' {
 
     It 'omits the entity ids when none are supplied' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             ($Body | ConvertFrom-Json).PSObject.Properties.Name -notcontains 'entityIds'
         } -Times 1 -Exactly -Scope It
     }
@@ -66,6 +68,7 @@ Describe 'Start-SCAScan' {
         $Entities = New-SCAScanEntityDefinition -org_id '098765432109' -account_id '123456789012'
         $null = Start-SCAScan -cloudProvider AZURE -accountType Specific -entityIds $Entities
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             $Content = $Body | ConvertFrom-Json
             ($Content.cloudProvider -eq 2) -and ($Content.entityIds[0].account_id -eq '123456789012')
         } -Times 1 -Exactly -Scope It

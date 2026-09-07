@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $Script:SCAModuleName = 'IdentityCommand.SCA'
 
     #Get Current Directory
@@ -55,6 +55,7 @@ Describe 'Test-SCAPolicy' {
 
     It 'sends the policy id in the request body' {
         Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+            if ($Method -ne 'POST') { return $false }
             ($Body | ConvertFrom-Json).policyId -eq 'SomePolicy'
         } -Times 1 -Exactly -Scope It
     }
