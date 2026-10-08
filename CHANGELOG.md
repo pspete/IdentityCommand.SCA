@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+- N/A
+
+## [0.2.17] - 2026-10-08
+
 ### Changed
 
 - Moved to the pspete.Build GitHub Actions pipeline; AppVeyor is retired.
