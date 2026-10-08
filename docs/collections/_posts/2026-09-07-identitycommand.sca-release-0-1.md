@@ -1,22 +1,37 @@
-# Change Log
+---
+title: "IdentityCommand.SCA Release 0.1"
+date: 2026-09-07 00:00:00
+version: 0.1.12
+tags:
+  - Release Notes
+  - Connect-SCATenant
+  - Get-SCAModuleData
+  - Get-SCAPolicy
+  - New-SCAPolicy
+  - Set-SCAPolicy
+  - Remove-SCAPolicy
+  - Get-SCAPolicyStatus
+  - Test-SCAPolicy
+  - Start-SCADiscovery
+  - New-SCAPolicyRoleDefinition
+  - New-SCAPolicyIdentityDefinition
+  - New-SCAPolicyAccessRuleDefinition
+  - New-SCAAccessTargetDefinition
+  - New-SCAScanEntityDefinition
+  - Get-SCAEligibleTarget
+  - Get-SCAEligibleGroup
+  - Request-SCAAccess
+  - Request-SCAGroupMembership
+  - Get-SCASession
+  - Revoke-SCASession
+  - Start-SCAScan
+  - Get-SCAJobStatus
+  - New-SCAWebApp
+  - Get-SCAOnDemandConfig
+  - Set-SCAOnDemandConfig
+---
 
-All notable changes to this project will be documented in this file.
-
-## Unreleased
-
-### Changed
-
-- Moved to the pspete.Build GitHub Actions pipeline; AppVeyor is retired.
-- Requires IdentityCommand 0.7.159 or later.
-- Argument completer registrations run from the module psm1, after IdentityCommand's helpers are copied in.
-
-## [0.2] - 2026-10-07
-
-### Changed
-
-- The module loader copies `IdentityCommand`'s private helper functions from the loaded module's session state instead of dot-sourcing its `Private` folder, so it works with both the current `IdentityCommand` layout and the combined single-file layout of future releases. Each copied helper runs in this module's scope and uses its session.
-
-## [0.1] - 2026-09-07
+## [0.1.12]
 
 ### Added
 

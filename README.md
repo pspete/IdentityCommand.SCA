@@ -6,16 +6,14 @@
 
 **IdentityCommand.SCA** is a PowerShell module that provides a set of easy-to-use commands, allowing you to interact with the API for **CyberArk Secure Cloud Access** from within the PowerShell environment.
 
-| Main Branch              | Latest Build             | CodeFactor                 | Coverage                     | PowerShell Gallery        | License                      |
-| ------------------------ | ------------------------ | -------------------------- | ---------------------------- | ------------------------- | ---------------------------- |
-| [![appveyor][]][av-site] | [![tests][]][tests-site] | [![codefactor][]][cf-site] | [![codecov][]][codecov-link] | [![psgallery][]][ps-site] | [![license][]][license-link] |
+| Main Branch              | CodeFactor                 | Coverage                     | PowerShell Gallery        | License                      |
+| ------------------------ | -------------------------- | ---------------------------- | ------------------------- | ---------------------------- |
+| [![build][]][build-site] | [![codefactor][]][cf-site] | [![codecov][]][codecov-link] | [![psgallery][]][ps-site] | [![license][]][license-link] |
 
-[appveyor]: https://ci.appveyor.com/api/projects/status/github/pspete/IdentityCommand.SCA?branch=main&svg=true
-[av-site]: https://ci.appveyor.com/project/pspete/IdentityCommand-SCA/branch/main
+[build]: https://github.com/pspete/IdentityCommand.SCA/actions/workflows/ci.yml/badge.svg?branch=main&event=push
+[build-site]: https://github.com/pspete/IdentityCommand.SCA/actions/workflows/ci.yml?query=branch%3Amain
 [psgallery]: https://img.shields.io/powershellgallery/v/IdentityCommand.SCA.svg
 [ps-site]: https://www.powershellgallery.com/packages/IdentityCommand.SCA
-[tests]: https://img.shields.io/appveyor/tests/pspete/IdentityCommand-SCA.svg
-[tests-site]: https://ci.appveyor.com/project/pspete/IdentityCommand-SCA
 [downloads]: https://img.shields.io/powershellgallery/dt/IdentityCommand.SCA.svg?color=blue
 [cf-site]: https://www.codefactor.io/repository/github/pspete/IdentityCommand.SCA
 [codefactor]: https://www.codefactor.io/repository/github/pspete/IdentityCommand.SCA/badge
