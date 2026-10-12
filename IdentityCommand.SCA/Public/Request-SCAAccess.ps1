@@ -33,7 +33,7 @@ function Request-SCAAccess {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/access/elevate"
+        $URI = "$(Resolve-RequestUrl)/api/access/elevate"
 
         #Project supplied parameters onto the expected request properties
         $Properties = Select-RequestProperty -Property $ExpectedProperties -BoundParameter ($PSBoundParameters | Get-Parameter)

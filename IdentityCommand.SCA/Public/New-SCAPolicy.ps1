@@ -70,7 +70,7 @@ function New-SCAPolicy {
 
     process {
 
-        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/create-policy" -SupportsDebug
+        $URI = Add-QueryString -URI "$(Resolve-RequestUrl)/api/policies/create-policy" -SupportsDebug
 
         #Get request parameters
         $boundParameters = $PSBoundParameters | Get-Parameter

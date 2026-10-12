@@ -14,7 +14,7 @@ function Test-SCAPolicy {
 
     process {
 
-        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/validate" -SupportsDebug
+        $URI = Add-QueryString -URI "$(Resolve-RequestUrl)/api/policies/validate" -SupportsDebug
 
         #Create Request Body
         $body = ConvertTo-JsonBody -Body @{ 'policyId' = $policyId }

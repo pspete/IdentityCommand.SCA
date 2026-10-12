@@ -21,7 +21,7 @@ function Get-SCAEligibleTarget {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/access/$csp/eligibility"
+        $URI = "$(Resolve-RequestUrl)/api/access/$csp/eligibility"
 
         $URI = Add-QueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter -ParametersToRemove csp)
 

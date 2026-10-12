@@ -33,7 +33,7 @@ function Start-SCAScan {
 
     process {
 
-        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/cloud/rescan" -SupportsDebug
+        $URI = Add-QueryString -URI "$(Resolve-RequestUrl)/api/cloud/rescan" -SupportsDebug
 
         $boundParameters = $PSBoundParameters | Get-Parameter
 
