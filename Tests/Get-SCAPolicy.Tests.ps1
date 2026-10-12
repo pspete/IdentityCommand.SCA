@@ -108,7 +108,7 @@ Describe 'Get-SCAPolicy' {
 
     }
 
-    Context 'Without Connect-SCATenant' {
+    Context 'Without a module session' {
 
         BeforeEach {
 
