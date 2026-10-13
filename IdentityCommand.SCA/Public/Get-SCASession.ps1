@@ -29,9 +29,9 @@ function Get-SCASession {
     process {
 
         $URI = if ($PSCmdlet.ParameterSetName -eq 'ByUser') {
-            "$($ISPSSSession.tenant_url)/api/access/users/$userId/sessions"
+            "$(Resolve-RequestUrl)/api/access/users/$userId/sessions"
         } else {
-            "$($ISPSSSession.tenant_url)/api/access/sessions"
+            "$(Resolve-RequestUrl)/api/access/sessions"
         }
 
         $URI = Add-QueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter -ParametersToRemove userId)

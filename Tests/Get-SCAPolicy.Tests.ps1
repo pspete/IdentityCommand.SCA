@@ -108,4 +108,48 @@ Describe 'Get-SCAPolicy' {
 
     }
 
+    Context 'Without a module session' {
+
+        BeforeEach {
+
+            InModuleScope -ModuleName $Script:SCAModuleName {
+                $ISPSSSession = [ordered]@{
+                    tenant_url = $null
+                    Subdomain  = $null
+                    StartTime  = $null
+                    WebSession = $null
+                }
+                New-Variable -Name ISPSSSession -Value $ISPSSSession -Scope Script -Force
+            }
+
+            Mock -CommandName Get-IDSession -ModuleName $Script:SCAModuleName -MockWith {
+                [ordered]@{
+                    tenant_url = 'https://sometenant.id.cyberark.cloud'
+                    Subdomain  = 'somedomain'
+                    StartTime  = Get-Date '2026-01-01T09:00:00'
+                    WebSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+                }
+            }
+
+            Mock -CommandName Resolve-ServiceUrl -ModuleName $Script:SCAModuleName -MockWith {
+                [pscustomobject]@{ ServiceUrl = "https://$Subdomain.$Service.cyberark.cloud" }
+            }
+
+        }
+
+        It 'resolves the service URL from the IdentityCommand session' {
+            $null = Get-SCAPolicy
+            Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:SCAModuleName -ParameterFilter {
+                $URI -eq 'https://somedomain.sca.cyberark.cloud/api/policies'
+            } -Times 1 -Exactly -Scope It
+        }
+
+        It 'resolves the service URL once' {
+            $null = Get-SCAPolicy
+            $null = Get-SCAPolicy
+            Should -Invoke -CommandName Resolve-ServiceUrl -ModuleName $Script:SCAModuleName -Times 1 -Exactly -Scope It
+        }
+
+    }
+
 }

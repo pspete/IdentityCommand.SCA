@@ -38,7 +38,7 @@ function Get-SCAPolicy {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/policies"
+        $URI = "$(Resolve-RequestUrl)/api/policies"
 
         if ($PSCmdlet.ParameterSetName -eq 'ById') {
 

@@ -78,7 +78,7 @@ function Set-SCAPolicy {
 
     process {
 
-        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/$policy_id" -SupportsDebug
+        $URI = Add-QueryString -URI "$(Resolve-RequestUrl)/api/policies/$policy_id" -SupportsDebug
 
         #Get existing policy settings
         $PolicySettings = Get-SCAPolicy -policy_id $policy_id

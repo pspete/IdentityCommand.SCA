@@ -14,7 +14,7 @@ function Set-SCAOnDemandConfig {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/on-demand/config"
+        $URI = "$(Resolve-RequestUrl)/api/on-demand/config"
 
         #Create Request Body
         $body = ConvertTo-JsonBody -Body ($PSBoundParameters | Get-Parameter)

@@ -21,7 +21,7 @@ function Get-SCAEligibleGroup {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/access/$csp/eligibility/groups"
+        $URI = "$(Resolve-RequestUrl)/api/access/$csp/eligibility/groups"
 
         $URI = Add-QueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter -ParametersToRemove csp)
 

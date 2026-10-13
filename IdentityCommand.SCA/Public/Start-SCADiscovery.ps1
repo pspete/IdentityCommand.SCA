@@ -32,7 +32,7 @@ function Start-SCADiscovery {
 
     process {
 
-        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/discovery" -SupportsDebug
+        $URI = Add-QueryString -URI "$(Resolve-RequestUrl)/api/policies/discovery" -SupportsDebug
 
         $boundParameters = $PSBoundParameters | Get-Parameter
 

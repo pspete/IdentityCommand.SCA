@@ -38,7 +38,7 @@ function New-SCAWebApp {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/onboarding/apps"
+        $URI = "$(Resolve-RequestUrl)/api/onboarding/apps"
 
         $boundParameters = $PSBoundParameters | Get-Parameter
 

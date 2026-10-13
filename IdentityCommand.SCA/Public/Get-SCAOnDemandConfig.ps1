@@ -7,7 +7,7 @@ function Get-SCAOnDemandConfig {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/on-demand/config"
+        $URI = "$(Resolve-RequestUrl)/api/on-demand/config"
 
         #Send Request
         $result = Invoke-IDRestMethod -Uri $URI -Method GET

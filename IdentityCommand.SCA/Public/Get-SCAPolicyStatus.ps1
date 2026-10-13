@@ -15,7 +15,7 @@ function Get-SCAPolicyStatus {
     process {
 
         #The API defines policy_id as both a path and a query parameter for this operation
-        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/$policy_id/status" -Parameter @{ 'policy_id' = $policy_id }
+        $URI = Add-QueryString -URI "$(Resolve-RequestUrl)/api/policies/$policy_id/status" -Parameter @{ 'policy_id' = $policy_id }
 
         #Send Request
         $result = Invoke-IDRestMethod -Uri $URI -Method GET

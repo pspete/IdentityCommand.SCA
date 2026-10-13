@@ -14,7 +14,7 @@ function Get-SCAJobStatus {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/integrations/status"
+        $URI = "$(Resolve-RequestUrl)/api/integrations/status"
 
         $URI = Add-QueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter) -SupportsDebug
 
