@@ -27,7 +27,7 @@ function Request-SCAGroupMembership {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/access/elevate/groups"
+        $URI = "$(Resolve-RequestUrl)/api/access/elevate/groups"
 
         $Properties = [ordered]@{
             'directoryId' = $directoryId

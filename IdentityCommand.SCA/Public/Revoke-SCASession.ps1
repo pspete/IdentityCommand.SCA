@@ -25,13 +25,13 @@ function Revoke-SCASession {
 
         if ($PSCmdlet.ParameterSetName -eq 'ByUser') {
 
-            $URI = "$($ISPSSSession.tenant_url)/api/access/users/$userId/sessions/revoke"
+            $URI = "$(Resolve-RequestUrl)/api/access/users/$userId/sessions/revoke"
             $Target = $userId
             $body = $null
 
         } else {
 
-            $URI = "$($ISPSSSession.tenant_url)/api/access/sessions/revoke"
+            $URI = "$(Resolve-RequestUrl)/api/access/sessions/revoke"
             $Target = $sessionIds -join ', '
 
             #Create Request Body

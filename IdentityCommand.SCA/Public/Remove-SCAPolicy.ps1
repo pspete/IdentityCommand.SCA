@@ -14,7 +14,7 @@ function Remove-SCAPolicy {
 
     process {
 
-        $URI = Add-QueryString -URI "$($ISPSSSession.tenant_url)/api/policies/$policy_id" -SupportsDebug
+        $URI = Add-QueryString -URI "$(Resolve-RequestUrl)/api/policies/$policy_id" -SupportsDebug
 
         if ($PSCmdlet.ShouldProcess($policy_id, 'Remove SCA Policy')) {
 
