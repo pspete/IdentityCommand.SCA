@@ -12,7 +12,7 @@
     RootModule        = 'IdentityCommand.SCA.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.2.17'
+    ModuleVersion     = '0.3.0'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
